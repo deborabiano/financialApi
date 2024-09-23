@@ -10,6 +10,6 @@ public class LoginController {
 
     @PostMapping
     public void login(@RequestBody DadosLogin dadosLogin) {
-        System.out.println(dadosLogin);
+                System.out.println(dadosLogin);
     }
 }

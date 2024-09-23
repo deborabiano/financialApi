@@ -5,6 +5,7 @@ public record DadosCadastro(
         String cpf,
         String dataNascimento,
         String email,
+        String telefone,
         DadosEndereco dadosEndereco
 ) {
 
