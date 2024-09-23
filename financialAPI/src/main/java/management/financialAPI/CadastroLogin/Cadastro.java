@@ -1,12 +1,13 @@
 package management.financialAPI.CadastroLogin;
 
 import jakarta.persistence.*;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-@Table(name = "cadastro") // Nome correto da tabela
+@Table(name = "cadastro")
 @Entity
 @Getter
 @NoArgsConstructor
@@ -27,16 +28,19 @@ public class Cadastro {
     @Embedded
     private Endereco endereco;
 
+    private boolean ativo;
+
     public Cadastro(DadosCadastro dadosCadastro) {
+        this.ativo = true;
         this.nome = dadosCadastro.nome();
         this.cpf = dadosCadastro.cpf();
         this.dataNascimento = dadosCadastro.dataNascimento();
         this.email = dadosCadastro.email();
         this.telefone = dadosCadastro.telefone();
-        this.endereco = new Endereco(dadosCadastro.endereco()); // Certifique-se de que dadosCadastro.endereco() está correto
+        this.endereco = new Endereco(dadosCadastro.endereco());
     }
 
-    // Você pode adicionar um método para atualizar os dados, se necessário
+
     public void atualizar(DadosCadastro dadosCadastro) {
         this.nome = dadosCadastro.nome();
         this.cpf = dadosCadastro.cpf();
@@ -44,5 +48,24 @@ public class Cadastro {
         this.email = dadosCadastro.email();
         this.telefone = dadosCadastro.telefone();
         this.endereco = new Endereco(dadosCadastro.endereco());
+    }
+
+    public void atualizarDados(@Valid DadosAtualizacaoCadastro dados) {
+        if (dados.nome() != null) {
+            this.nome = dados.nome();
+        }
+        if (dados.email() != null) {
+            this.email = dados.email();
+        }
+        if (dados.telefone() != null) {
+            this.telefone = dados.telefone();
+        }
+        if (dados.endereco() != null) {
+            this.endereco.atualizarDados(dados.endereco());
+        }
+    }
+
+    public void excluir() {
+        this.ativo = false;
     }
 }
