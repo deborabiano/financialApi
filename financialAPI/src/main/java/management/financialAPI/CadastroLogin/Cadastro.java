@@ -6,8 +6,8 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-@Table(name = "financialapi")
-@Entity(name = "cadastro")
+@Table(name = "cadastro") // Nome correto da tabela
+@Entity
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
@@ -27,12 +27,22 @@ public class Cadastro {
     @Embedded
     private Endereco endereco;
 
-    // Construtor para inicializar os campos
     public Cadastro(DadosCadastro dadosCadastro) {
         this.nome = dadosCadastro.nome();
         this.cpf = dadosCadastro.cpf();
         this.dataNascimento = dadosCadastro.dataNascimento();
         this.email = dadosCadastro.email();
-        //this.endereco = new Endereco(dadosCadastro.endereco());
+        this.telefone = dadosCadastro.telefone();
+        this.endereco = new Endereco(dadosCadastro.endereco()); // Certifique-se de que dadosCadastro.endereco() está correto
+    }
+
+    // Você pode adicionar um método para atualizar os dados, se necessário
+    public void atualizar(DadosCadastro dadosCadastro) {
+        this.nome = dadosCadastro.nome();
+        this.cpf = dadosCadastro.cpf();
+        this.dataNascimento = dadosCadastro.dataNascimento();
+        this.email = dadosCadastro.email();
+        this.telefone = dadosCadastro.telefone();
+        this.endereco = new Endereco(dadosCadastro.endereco());
     }
 }

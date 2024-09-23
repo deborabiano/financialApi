@@ -1,6 +1,5 @@
 package management.financialAPI.CadastroLogin;
 
-
 import jakarta.persistence.Embeddable;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -10,7 +9,6 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-
 public class Endereco {
 
     private String logradouro;
@@ -21,6 +19,7 @@ public class Endereco {
     private String cidade;
     private String uf;
 
+    // Construtor que inicializa os campos a partir de DadosEndereco
     public Endereco(DadosEndereco dadosEndereco) {
         this.logradouro = dadosEndereco.logradouro();
         this.numero = dadosEndereco.numero();
