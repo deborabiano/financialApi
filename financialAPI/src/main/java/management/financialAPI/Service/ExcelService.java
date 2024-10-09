@@ -31,11 +31,12 @@ public class ExcelService {
             String dataNascimento = getCellValue(row.getCell(2));
             String email = getCellValue(row.getCell(3));
             String telefone = getCellValue(row.getCell(4));
+            String senha = getCellValue(row.getCell(5));
 
 
             DadosEndereco endereco = null;
 
-            DadosCadastro dadosCadastro = new DadosCadastro(nome, cpf, dataNascimento, email, telefone, endereco);
+            DadosCadastro dadosCadastro = new DadosCadastro(nome, cpf, dataNascimento, email, telefone, senha, endereco);
             cadastros.add(dadosCadastro);
         }
 
