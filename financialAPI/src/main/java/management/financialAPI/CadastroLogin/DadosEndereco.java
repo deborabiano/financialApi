@@ -14,7 +14,7 @@ public record DadosEndereco(
         String bairro,
 
         @NotBlank
-                @Pattern(regexp = "\\d{8}")
+        @Pattern(regexp = "\\d{8}")
         String cep,
 
         @NotBlank
@@ -25,16 +25,16 @@ public record DadosEndereco(
         @NotBlank
         String uf
 ) {
-        // Construtor que aceita um objeto Endereco
-        public DadosEndereco(Endereco endereco) {
-                this(
-                        endereco.getLogradouro(),
-                        endereco.getNumero(),
-                        endereco.getBairro(),
-                        endereco.getCep(),
-                        endereco.getCidade(),
-                        endereco.getComplemento(),
-                        endereco.getUf());
-        }
-}
+    public DadosEndereco(Endereco endereco) {
+        this(
+                endereco.getLogradouro(),
+                endereco.getNumero(),
+                endereco.getBairro(),
+                endereco.getCep(),
+                endereco.getCidade(),
+                endereco.getComplemento(),
+                endereco.getUf());
+    }
 
+    // Ensure that there is a definition for the Endereco class
+}

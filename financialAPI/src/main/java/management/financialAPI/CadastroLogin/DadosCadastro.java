@@ -4,6 +4,7 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 
+// Validações de Cadastro
 public record DadosCadastro(
         @NotBlank(message = "Nome é obrigatório")
         String nome,
@@ -29,7 +30,6 @@ public record DadosCadastro(
 
         DadosEndereco endereco
 ) {
-        // Construtor que cria DadosCadastro a partir de um objeto Cadastro
         public DadosCadastro(Cadastro consulta) {
                 this(
                         consulta.getNome(),
@@ -37,8 +37,8 @@ public record DadosCadastro(
                         consulta.getEmail(),
                         consulta.getDataNascimento(),
                         consulta.getTelefone(),
-                        consulta.getSenha(), // Certifique-se de que o objeto Cadastro tenha um método getSenha()
-                        new DadosEndereco(consulta.getEndereco())
+                        consulta.getSenha(),
+                        new DadosEndereco(consulta.getEndereco()) // Ensure DadosEndereco has proper constructor
                 );
         }
 }

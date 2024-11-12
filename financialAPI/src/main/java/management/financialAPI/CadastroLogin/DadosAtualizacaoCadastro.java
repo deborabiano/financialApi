@@ -3,7 +3,7 @@ package management.financialAPI.CadastroLogin;
 import jakarta.validation.constraints.NotNull;
 
 public record DadosAtualizacaoCadastro(
-       @NotNull
+        @NotNull
         Long id,
 
         String nome,
@@ -11,5 +11,5 @@ public record DadosAtualizacaoCadastro(
         String telefone,
         DadosEndereco endereco
 ) {
-
+        // Ensure that DadosEndereco class is defined elsewhere in your code
 }

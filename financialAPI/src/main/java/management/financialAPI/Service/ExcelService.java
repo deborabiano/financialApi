@@ -1,68 +1,50 @@
 package management.financialAPI.Service;
 
 import management.financialAPI.CadastroLogin.DadosCadastro;
-import management.financialAPI.CadastroLogin.DadosEndereco;
+import management.financialAPI.CadastroLogin.Usuario;
+import management.financialAPI.DAO.UsuarioRepository;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class ExcelService {
 
-    public List<DadosCadastro> lerArquivoExcel(MultipartFile file) throws IOException {
-        List<DadosCadastro> cadastros = new ArrayList<>();
+    @Autowired
+    private UsuarioRepository usuarioRepository;
 
-        Workbook workbook = new XSSFWorkbook(file.getInputStream());
-        Sheet sheet = workbook.getSheetAt(0); // Considerando que o arquivo tem uma única aba
+    // Método para ler a planilha e salvar os dados no banco
+    public void importUsersFromExcel(MultipartFile file) throws IOException {
+        List<Usuario> usuarios = new ArrayList<>();
 
-        for (Row row : sheet) {
-            if (row.getRowNum() == 0) { // Ignorar a linha de cabeçalho
-                continue;
+        try (InputStream is = file.getInputStream(); Workbook workbook = new XSSFWorkbook(is)) {
+            Sheet sheet = workbook.getSheetAt(0); // Seleciona a primeira linha
+
+            // aqui começando da segunda linha
+            for (int i = 1; i < sheet.getPhysicalNumberOfRows(); i++) {
+                Row row = sheet.getRow(i);
+
+                Usuario usuario = new Usuario();
+                usuario.setNome(row.getCell(0).getStringCellValue());  // Nome na coluna A
+                usuario.setEmail(row.getCell(1).getStringCellValue()); // Email na coluna B
+                usuario.setSenha(row.getCell(2).getStringCellValue()); // Senha na coluna C
+
+                usuarios.add(usuario);
             }
-
-            // Tratamento para campos que podem estar vazios ou nulos
-            String nome = getCellValue(row.getCell(0));
-            String cpf = getCellValue(row.getCell(1));
-            String dataNascimento = getCellValue(row.getCell(2));
-            String email = getCellValue(row.getCell(3));
-            String telefone = getCellValue(row.getCell(4));
-            String senha = getCellValue(row.getCell(5));
-
-
-            DadosEndereco endereco = null;
-
-            DadosCadastro dadosCadastro = new DadosCadastro(nome, cpf, dataNascimento, email, telefone, senha, endereco);
-            cadastros.add(dadosCadastro);
         }
-
-        workbook.close();
-        return cadastros;
+        // Salva todos os usuários no banco de dados
+        usuarioRepository.saveAll(usuarios);
     }
 
-    private String getCellValue(Cell cell) {
-        if (cell == null) {
-            return null;
-        }
-        switch (cell.getCellType()) {
-            case STRING:
-                return cell.getStringCellValue();
-            case NUMERIC:
-
-                if (DateUtil.isCellDateFormatted(cell)) {
-
-                    return cell.getDateCellValue().toString();
-                } else {
-                    return String.valueOf((long) cell.getNumericCellValue());
-                }
-            case BOOLEAN:
-                return String.valueOf(cell.getBooleanCellValue());
-            default:
-                return null;
-        }
+    public List<DadosCadastro> lerArquivoExcel(MultipartFile ignoredFile) {
+        return List.of();
     }
 }
+
