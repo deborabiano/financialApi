@@ -1,0 +1,11 @@
+NOME COMPLETO ;CPF;EMAIL;DATA NASCIMENTO;TELEFONE;LOGRADOURO;NUMERO ;BAIRRO;CEP ;CIDADE ;COMPLEMENTO;CIDADE;UF
+Ana Clara Souza;123.456.789-00;14/05/1990;ana.souza@example.com;(11) 91234-5678;Rua A;123;Centro;01000-000;São Paulo;Apto 101;SP;
+Bruno Silva;234.567.890-11;22/03/1985;bruno.silva@example.com;(21) 92345-6789;Avenida B;456;Jardim;02000-001;Rio de Janeiro;Bloco 3;RJ;
+Carla Mendes;345.678.901-22;30/07/1992;carla.mendes@example.com;(31) 93456-7890;Rua C;789;Vila Nova;03000-002;Belo Horizonte;Casa 2;MG;
+Daniel Oliveira;456.789.012-33;11/11/1988;daniel.oliveira@example.com;(41) 94567-8901;Rua D;321;Funcionários;04000-003;Curitiba;Sala 301;PR;
+Fernanda Costa;567.890.123-44;09/09/1995;fernanda.costa@example.com;(51) 95678-9012;Rua E;654;Floresta;05000-004;Porto Alegre;Apto 201;RS;
+Gustavo Lima;678.901.234-55;05/04/1993;gustavo.lima@example.com;(61) 96789-0123;Avenida F;987;Santa Mônica;06000-005;Brasília;Bloco 5;DF;
+Helena Rocha;789.012.345-66;20/12/1980;helena.rocha@example.com;(71) 97890-1234;Rua G;111;Lagoa;07000-006;Salvador;Apto 105;BA;
+Igor Martins;890.123.456-77;10/10/1991;igor.martins@example.com;(81) 98901-2345;Rua H;222;Pituba;08000-007;Salvador;Casa 3;BA;
+Juliana Pereira;901.234.567-88;15/08/1987;juliana.pereira@example.com;(91) 99012-3456;Avenida I;333;Morumbi;09000-008;São Paulo;Bloco 1;SP;
+Lucas Almeida;012.345.678-99;25/06/1994;lucas.almeida@example.com;(02) 99123-4567;Rua J;444;Centro;10000-009;Rio de Janeiro;Apto 404;RJ;
